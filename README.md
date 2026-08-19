@@ -1,8 +1,8 @@
 # ChessLens
 
-ChessLens is a board-agnostic TypeScript engine and Chrome extension for visualizing pressure on chess pieces.
+ChessLens is a board TypeScript engine and Chrome extension for visualizing pressure on chess pieces.
 
-It calculates which occupied squares are attacked, assigns a three-level color scale, and renders a small icon for every attacking piece. The core engine does not own or render a chessboard. Lightweight adapters connect it to compatible board interfaces.
+It calculates which occupied squares are attacked, assigns a three-level color scale, and renders a small icon for every attacking piece. 
 
 ## Pressure scale
 
@@ -11,7 +11,7 @@ It calculates which occupied squares are attacked, assigns a three-level color s
 | Black piece | Pink | Red | Dark red |
 | White piece | Light blue | Blue | Dark blue |
 
-Each highlighted square displays miniature icons representing the pieces attacking it. For example, a black pawn on `f7` attacked by a white knight receives a pink overlay with a knight badge.
+Each highlighted square displays miniature icons representing the pieces attacking it. For example, id a black piece is attacked by a white knight, it receives a pink overlay with a knight icon.
 
 ## Features
 
@@ -111,13 +111,6 @@ Observes board changes and refreshes the overlays after each move. It returns a 
 
 Connects ChessLens to a DOM-based chessboard without placing website-specific selectors inside the core engine.
 
-## Development
-
-```bash
-npm test
-npm run typecheck
-npm run build
-```
 
 ## Responsible use
 
