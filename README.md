@@ -2,7 +2,7 @@
 
 ChessLens is a board TypeScript engine and Chrome extension for visualizing pressure on chess pieces.
 
-It calculates which occupied squares are attacked, assigns a three-level color scale, and renders a small icon for every attacking piece. 
+It calculates which occupied squares are attacked, assigns a three-level color scale, and renders a small icon for every attacking piece. It also registers which pieces are defended and by what.
 
 ## Pressure scale
 
@@ -11,7 +11,9 @@ It calculates which occupied squares are attacked, assigns a three-level color s
 | Black piece | Pink | Red | Dark red |
 | White piece | Light blue | Blue | Dark blue |
 
-Each highlighted square displays miniature icons representing the pieces attacking it. For example, id a black piece is attacked by a white knight, it receives a pink overlay with a knight icon.
+Each highlighted square displays miniature icons representing the pieces attacking it. For example, if a black piece is attacked by a white knight, it receives a pink overlay with a knight icon.
+
+In turn, if that same piece is being defended by the queen, for example, it will say `def` with a queen icon.
 
 ## Features
 
