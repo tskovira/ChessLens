@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "ChessLens",
+  "version": "0.1.0",
+  "description": "Visual chess threat overlays for training, puzzles, bots, analysis, and review.",
+  "permissions": ["storage"],
+  "host_permissions": [
+    "https://www.chess.com/*",
+    "https://lichess.org/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.chess.com/*",
+        "https://lichess.org/*"
+      ],
+      "js": [
+        "core.js",
+        "adapters.js",
+        "content.js"
+      ],
+      "css": ["overlay.css"],
+      "run_at": "document_start"
+    }
+  ],
+  "action": {
+    "default_title": "ChessLens",
+    "default_popup": "popup.html"
+  }
+}
