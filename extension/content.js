@@ -5,8 +5,17 @@
   let frame=0;
   let lastUrl=location.href;
 
+  const boardOptions={
+    childList:true,
+    subtree:true,
+    attributes:true,
+    attributeFilter:["class","style"],
+  };
+
   function setStatus(status,detail=""){
-    chrome.storage.local.set({chesslensStatus:{status,detail,host:location.hostname,updatedAt:Date.now()}});
+    chrome.storage.local.set({
+      chesslensStatus:{status,detail,host:location.hostname,updatedAt:Date.now()},
+    });
   }
 
   function stopBoard(){
@@ -19,12 +28,12 @@
   function repaint(adapter){
     cancelAnimationFrame(frame);
     frame=requestAnimationFrame(()=>{
-      if(activeBoard&&document.contains(activeBoard)) {
-        const threats=window.ChessLensCore.render(adapter);
-        setStatus("active",`${threats.length} threatened pieces`);
-      } else {
-        scan();
-      }
+      if(!activeBoard||!document.contains(activeBoard)){scan();return;}
+      boardObserver?.disconnect();
+      const threats=window.ChessLensCore.render(adapter);
+      boardObserver?.observe(activeBoard,boardOptions);
+      const defended=threats.filter(threat=>threat.defenders.length).length;
+      setStatus("active",`${threats.length} threatened · ${defended} defended`);
     });
   }
 
@@ -41,9 +50,9 @@
     stopBoard();
     activeBoard=board;
     if(getComputedStyle(board).position==="static") board.style.position="relative";
-    repaint(adapter);
     boardObserver=new MutationObserver(()=>repaint(adapter));
-    boardObserver.observe(board,{childList:true,subtree:true,attributes:true,attributeFilter:["class","style"]});
+    boardObserver.observe(board,boardOptions);
+    repaint(adapter);
   }
 
   function watchPage(){
@@ -58,6 +67,10 @@
   chrome.storage.onChanged.addListener((changes,area)=>{
     if(area==="sync"&&changes.enabled) scan();
   });
-  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",watchPage,{once:true});
-  else watchPage();
+
+  if(document.readyState==="loading"){
+    document.addEventListener("DOMContentLoaded",watchPage,{once:true});
+  }else{
+    watchPage();
+  }
 })();
