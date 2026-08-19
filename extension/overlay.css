@@ -1,0 +1,36 @@
+[data-chesslens-root]{
+  position:absolute!important;
+  inset:0!important;
+  z-index:50!important;
+  pointer-events:none!important;
+  overflow:hidden!important;
+}
+.chesslens-square{
+  position:absolute!important;
+  width:12.5%!important;
+  height:12.5%!important;
+  opacity:.78!important;
+  pointer-events:none!important;
+}
+.chesslens-icons{
+  position:absolute!important;
+  right:3px!important;
+  top:3px!important;
+  display:flex!important;
+  flex-wrap:wrap!important;
+  justify-content:flex-end!important;
+  gap:2px!important;
+  max-width:76%!important;
+}
+.chesslens-icons span{
+  width:18px!important;
+  height:18px!important;
+  display:grid!important;
+  place-items:center!important;
+  border-radius:50%!important;
+  background:#fff!important;
+  color:#17211d!important;
+  border:1px solid rgba(23,33,29,.38)!important;
+  box-shadow:0 1px 3px rgba(0,0,0,.3)!important;
+  font:13px/1 "Segoe UI Symbol","Arial Unicode MS",serif!important;
+}
