@@ -1,0 +1,34 @@
+{
+  "name": "chesslens",
+  "version": "0.1.0",
+  "description": "Board-agnostic chess threat visualization engine",
+  "type": "module",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "import": "./dist/src/index.js"
+    }
+  },
+  "files": [
+    "dist/src"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "npm run build && node --test dist/tests/*.test.js"
+  },
+  "keywords": [
+    "chess",
+    "visualization",
+    "threats",
+    "overlay",
+    "typescript"
+  ],
+  "author": "Travis Skovira",
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "^5.9.0"
+  }
+}
